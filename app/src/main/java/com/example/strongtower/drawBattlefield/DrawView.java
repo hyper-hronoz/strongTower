@@ -7,7 +7,7 @@ import android.view.SurfaceView;
 
 public class DrawView extends SurfaceView implements SurfaceHolder.Callback {
 
-    private DrawThread drawThread;
+    private DrawBattlefield drawBattlefield;
 
 
     public DrawView(Context context) {
@@ -18,8 +18,8 @@ public class DrawView extends SurfaceView implements SurfaceHolder.Callback {
 
     @Override
     public void surfaceCreated(SurfaceHolder holder) {
-        drawThread = new DrawThread(getContext(), getHolder());
-        drawThread.start();
+        drawBattlefield = new DrawBattlefield(getContext(), getHolder());
+        drawBattlefield.start();
     }
 
     @Override
@@ -29,11 +29,11 @@ public class DrawView extends SurfaceView implements SurfaceHolder.Callback {
 
     @Override
     public void surfaceDestroyed(SurfaceHolder holder) {
-        drawThread.requestStop();
+        drawBattlefield.requestStop();
         boolean retry = true;
         while (retry) {
             try {
-                drawThread.join();
+                drawBattlefield.join();
                 retry = false;
             } catch (InterruptedException e) {
                 //
@@ -43,7 +43,7 @@ public class DrawView extends SurfaceView implements SurfaceHolder.Callback {
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        drawThread.setTowardPoint((int) event.getX(), (int) event.getY());
+        drawBattlefield.setTowardPoint((int) event.getX(), (int) event.getY());
 
         return false;
     }
