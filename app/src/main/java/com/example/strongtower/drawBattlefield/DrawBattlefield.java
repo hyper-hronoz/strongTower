@@ -14,12 +14,15 @@ public class DrawBattlefield extends Thread {
 
     private SurfaceHolder surfaceHolder;
 
-    private volatile boolean running = true;//флаг для остановки потока
-    private Paint backgroundPaint = new Paint();
+    private volatile boolean running = true; //флаг для остановки потока
 
-    private Bitmap bitmap;
     private int towardPointX;
     private int towardPointY;
+
+    public void setTowardPoint(int x, int y) {
+        towardPointX = x;
+        towardPointY = y;
+    }
 
     public DrawBattlefield(Context context, SurfaceHolder surfaceHolder) {
         this.surfaceHolder = surfaceHolder;
@@ -29,17 +32,8 @@ public class DrawBattlefield extends Thread {
         running = false;
     }
 
-    public void setTowardPoint(int x, int y) {
-        towardPointX = x;
-        towardPointY = y;
-    }
-
     @Override
     public void run() {
-
-
-        //движение человечков
-
         while (running) {
             Canvas canvas = surfaceHolder.lockCanvas();
             if (canvas != null) {
