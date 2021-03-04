@@ -1,4 +1,4 @@
-package com.example.strongtower;
+package com.example.strongtower.drawBattlefield;
 
 import android.content.Context;
 import android.view.MotionEvent;

@@ -1,4 +1,4 @@
-package com.example.strongtower;
+package com.example.strongtower.drawBattlefield;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -83,19 +83,16 @@ public class DrawThread extends Thread {
                     //smileY = -(smileX*smileX);
 
                     //Движение по оси Y
-                    if (smileX <= canvas.getWidth()/2)  smileY -= 1;
-                    if (smileX > canvas.getWidth()/2) smileY += 1;
+                    if (smileX <= canvas.getWidth() / 2) smileY -= 1;
+                    if (smileX > canvas.getWidth() / 2) smileY += 1;
 
                     // Движение по оси X
                     if (smileX - 200 <= canvas.getWidth()) smileX += 1;
                     if (smileX - 200 > canvas.getWidth()) {
-                        smileX = - 200;
+                        smileX = -200;
                         smileX += 1;
                         is_moon = !(is_moon);
                     }
-
-
-
 
                     // Земля
                     //paint.setColor(Color.rgb(63, 155, 11));
@@ -109,9 +106,10 @@ public class DrawThread extends Thread {
                     // человечки
                     paint.setColor(Color.rgb(41, 54, 43));
                     canvas.drawRect(manX, canvas.getHeight() / 2 + 300, manX + 30, canvas.getHeight() / 2 + 200, paint);
-                    if (manX - 30 <= (canvas.getWidth() - 460)) { manX += 2;}
-                    else{
-                        manX = - 30;
+                    if (manX - 30 <= (canvas.getWidth() - 460)) {
+                        manX += 2;
+                    } else {
+                        manX = -30;
                         manX += 2;
                     }
 
