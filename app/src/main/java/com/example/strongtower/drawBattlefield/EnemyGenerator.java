@@ -7,28 +7,16 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.concurrent.TimeUnit;
 
 public class EnemyGenerator {
     public static ArrayList<Enemy> enemies = new ArrayList<Enemy>();
 
     public EnemyGenerator(Canvas canvas) {
-
-//        new Timer().scheduleAtFixedRate(new TimerTask(){
-//            @Override
-//            public void run(){
-                Paint paint = new Paint();
-                enemies.add(new Enemy(getRandomSpeed(2, 10)));
-
-//                Paint paint2 = new Paint();
-//                enemies.add(new Enemy(canvas, paint2));
-//
-//                for (int i = 0; i < enemies.size(); i++ ) {
-//                    System.out.println("Porn" + enemies.get(i));
-//                }
-//                enemies.add(new Enemy(canvas, paint));
-//                enemies.add(enemy);
-//            }
-//        },0,1000);
+        Paint paint = new Paint();
+        if (getRandomSpeed(0, 101) % 100 == 0) {
+            enemies.add(new Enemy(getRandomSpeed(2, 10)));
+        }
         for (int i = 0; i < enemies.size(); i++) {
             Enemy enemy = enemies.get(i);
             enemy.enemyXCoordinate += enemy.enemySpeed;
@@ -39,6 +27,7 @@ public class EnemyGenerator {
 
             enemies.set(i, enemy);
             canvas.drawRect(enemies.get(i).enemyXCoordinate, canvas.getHeight() / 2 + 300, enemies.get(i).enemyXCoordinate + 30, canvas.getHeight() / 2 + 200, paint);
+
         }
     }
 
