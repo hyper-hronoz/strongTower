@@ -9,12 +9,10 @@ public class DrawView extends SurfaceView implements SurfaceHolder.Callback {
 
     private DrawBattlefield drawBattlefield;
 
-
     public DrawView(Context context) {
         super(context);
         getHolder().addCallback(this);
     }
-
 
     @Override
     public void surfaceCreated(SurfaceHolder holder) {

@@ -55,8 +55,7 @@ public class DrawBattlefield extends Thread {
                     // Замок
                     new Castle(canvas, paint);
 
-                    // Враг
-//                    new Enemy(canvas, paint);
+                    // Генератор врагов
                     new EnemyGenerator(canvas);
 
                 } finally {
