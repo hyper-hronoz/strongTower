@@ -56,7 +56,8 @@ public class DrawBattlefield extends Thread {
                     new Castle(canvas, paint);
 
                     // Враг
-                    new Enemy(canvas, paint);
+//                    new Enemy(canvas, paint);
+                    new EnemyGenerator(canvas);
 
                 } finally {
                     surfaceHolder.unlockCanvasAndPost(canvas);

@@ -4,15 +4,14 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 
-public class Enemy {
-    private static int manX = 0;
+import java.util.Timer;
+import java.util.TimerTask;
 
-    public Enemy(Canvas canvas, Paint paint) {
-        paint.setColor(Color.rgb(41, 54, 43));
-        canvas.drawRect(manX, canvas.getHeight() / 2 + 300, manX + 30, canvas.getHeight() / 2 + 200, paint);
-        if (manX - 30 > (canvas.getWidth() - 460)) {
-            manX = -30;
-        }
-        manX += 2;
+public class Enemy {
+    public int enemyXCoordinate = 0;
+    public int enemySpeed = 0;
+
+    public Enemy(int enemySpeed) {
+        this.enemySpeed = enemySpeed;
     }
 }
