@@ -11,6 +11,9 @@ import android.view.SurfaceHolder;
 import com.example.strongtower.MainActivity;
 
 public class DrawBattlefield extends Thread {
+    // здесь хранятся все о статической отрисовке(все то что не меняется)
+    public int groundHeight = 0;
+    public int towerHeight = 0;
 
     private SurfaceHolder surfaceHolder;
 
@@ -52,11 +55,10 @@ public class DrawBattlefield extends Thread {
                     // Земля
                     new Ground(canvas, paint);
 
-                    // Замок
-                    new Castle(canvas, paint);
 
-                    // Генератор врагов
-                    new EnemyGenerator(canvas);
+
+                    // Логига игры
+                    new GameCore(canvas);
 
                 } finally {
                     surfaceHolder.unlockCanvasAndPost(canvas);
