@@ -45,7 +45,7 @@ public class DrawView extends SurfaceView implements SurfaceHolder.Callback {
         drawBattlefield.setTowardPoint((int) event.getX(), (int) event.getY());
         try {
             for (Enemy enemy : GameCore.enemies) {
-                if (enemy.enemyXCoordinate <= (int) event.getX() && enemy.enemyXCoordinate + enemy.enemyWidth >= (int) event.getX()) {
+                if (enemy.enemyXCoordinate <= (int) drawBattlefield.arrow_x && enemy.enemyXCoordinate + enemy.enemyWidth >= (int) drawBattlefield.arrow_x) {
                     System.out.println("Есть пробитие");
                     GameCore.enemies.remove(enemy);
                 }

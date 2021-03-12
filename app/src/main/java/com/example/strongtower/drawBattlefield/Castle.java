@@ -13,7 +13,7 @@ public class Castle {
     private int castleHeight ;
 
     public final double Y_POSITION = 934;
-    public final double X_POSITION = 100;
+    public final double X_POSITION = 300;
 
     public Castle(Canvas canvas) {
         this.canvas = canvas;
