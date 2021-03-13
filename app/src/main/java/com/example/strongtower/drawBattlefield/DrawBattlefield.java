@@ -84,7 +84,6 @@ public class DrawBattlefield extends Thread {
                     //***********************************************************************************************//
                     /* Уголок кода Глеба, сюда не лезть*/
 
-                    //***********************************************************************************************//
                     /* Рисуем лук */
                     int bow_x = canvas.getWidth()/2 + 675 + 15;
                     int bow_y = canvas.getHeight()/2 - 275 + 75;
@@ -102,30 +101,29 @@ public class DrawBattlefield extends Thread {
                     //Переворачиваем холст обратно, на прежний угол
                     canvas.rotate(rotate_bow_angle-90, rotate_bow_x_center, rotate_bow_y_center);
 
-                    //***********************************************************************************************//
+
+
                     /* Рисуем стрелу */
 
-                    /*
-                    if (arrow_x == 1800) {
-                        //Поворачиваем холст
-                        canvas.rotate(-(rotate_bow_angle-45), rotate_bow_x_center, rotate_bow_y_center);
-                        //Рисуем стрелу
-                        canvas.drawBitmap(arrow,arrow_x,arrow_y,paint);
-                        //Переворачиваем холст обратно, на прежний угол
-                        canvas.rotate(rotate_bow_angle-45, rotate_bow_x_center, rotate_bow_y_center);
-                    }
-                    */
+                    //Вертикальная и горизонтальная скорость стрелы
+                    int x_speed = Math.abs(towardPointX-arrow_x)/10; //int y_speed = (int) sqrt(pow((towardPointY-arrow_y),2)+ pow((towardPointX-arrow_x),2))/10;
+                    int y_speed = Math.abs(towardPointY-arrow_y)/10;
+
+                    //Поворачиваем холст
+                    canvas.rotate(-(rotate_bow_angle-45), rotate_bow_x_center, rotate_bow_y_center);
+                    //Рисуем стрелу
+                    canvas.drawBitmap(arrow,arrow_x,arrow_y,paint);
+                    //Переворачиваем холст обратно, на прежний угол
+                    canvas.rotate(rotate_bow_angle-45, rotate_bow_x_center, rotate_bow_y_center);
+
                     //Поворачиваем холст
                     //canvas.rotate(-(rotate_bow_angle-45), rotate_bow_x_center, rotate_bow_y_center);
 
                     // Движение стрелы
-                    if (arrow_x >= towardPointX) arrow_x -=arrow_speed;
-                    if (arrow_x <= towardPointX) arrow_x += arrow_speed;
-                    if (arrow_y >= towardPointY) arrow_y -=arrow_speed;
-                    if (arrow_y <= towardPointY) arrow_y +=arrow_speed;
-
-                    //Рисуем стрелу
-                    canvas.drawBitmap(arrow,arrow_x,arrow_y,paint);
+//                    if (arrow_x >= towardPointX) arrow_x -=x_speed;
+//                    if (arrow_x <= towardPointX) arrow_x += x_speed;
+//                    if (arrow_y >= towardPointY) arrow_y -=y_speed;
+//                    if (arrow_y <= towardPointY) arrow_y +=y_speed;
 
                     //Проверка на уничтожение
                     try {
@@ -134,10 +132,6 @@ public class DrawBattlefield extends Thread {
                             arrow_y = 540;
                         }
                     } catch (Exception e) {}
-
-                    //Переворачиваем холст обратно, на прежний угол
-                    //canvas.rotate(rotate_bow_angle-45, rotate_bow_x_center, rotate_bow_y_center);
-
 
                     //***********************************************************************************************//
 
