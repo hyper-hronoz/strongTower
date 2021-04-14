@@ -6,6 +6,8 @@ import java.util.ArrayList;
 
 public class GameCore {
     public static ArrayList<Enemy> enemies = new ArrayList<Enemy>();
+    // массив со стрелами
+    public static ArrayList<Arrow> arrows = new ArrayList<Arrow>();
     private Canvas canvas;
 
     public GameCore(Canvas canvas) {
@@ -23,6 +25,7 @@ public class GameCore {
 
         // отрисовывыем врагов
         drawEnemies();
+        drawArrows();
     }
 
     // рисовка всех врагов
@@ -35,6 +38,22 @@ public class GameCore {
             }
 
             enemy.draw();
+        }
+    }
+    public void drawArrows() {
+        for (Arrow arrow : arrows) {
+            arrow.arrowXCoordinate += arrow.arrowXSpeed;
+            arrow.arrowYCoordinate += arrow.arrowYSpeed;
+
+            int towardPointX = (int) event.getX();
+            int towardPointY = (int) event.getY()
+            // Движение стрелы
+            if (arrowXCoordinate >= towardPointX) arrowXCoordinate -=arrowXSpeed;
+            if (arrowXCoordinate <= towardPointX) arrowXCoordinate += arrowXSpeed;
+            if (arrowYCoordinate >= towardPointY) arrowYCoordinate -=arrowYSpeed;
+            if (arrowYCoordinate <= towardPointY) arrowYCoordinate +=arrowYSpeed;
+
+            arrow.draw();
         }
     }
 }

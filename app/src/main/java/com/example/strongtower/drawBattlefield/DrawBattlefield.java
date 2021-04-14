@@ -21,13 +21,14 @@ public class DrawBattlefield extends Thread {
 
     private volatile boolean running = true; //флаг для остановки потока
     private Bitmap bow;
-    private Bitmap arrow;
+    //private Bitmap arrow;
 
     private Enemy enemy;
+    //private Arrow arrow1;
 
-    public int arrow_x = 1800;
-    public int arrow_y = 540;
-    private int arrow_speed = 36;
+    //public int arrow_x = 1800;
+    //public int arrow_y = 540;
+    //private int arrow_speed = 36;
     public int towardPointX;
     public int towardPointY;
 
@@ -48,7 +49,7 @@ public class DrawBattlefield extends Thread {
         /* Добавляем картинку лука */
         bow = BitmapFactory.decodeResource(context.getResources(), R.drawable.bow);
         /* Добавляем картинку стрелы*/
-        arrow = BitmapFactory.decodeResource(context.getResources(), R.drawable.m_arrow);
+        //arrow = BitmapFactory.decodeResource(context.getResources(), R.drawable.m_arrow);
     }
 
     public void requestStop() {
@@ -106,15 +107,15 @@ public class DrawBattlefield extends Thread {
                     /* Рисуем стрелу */
 
                     //Вертикальная и горизонтальная скорость стрелы
-                    int x_speed = Math.abs(towardPointX-arrow_x)/10; //int y_speed = (int) sqrt(pow((towardPointY-arrow_y),2)+ pow((towardPointX-arrow_x),2))/10;
-                    int y_speed = Math.abs(towardPointY-arrow_y)/10;
+                    //int x_speed = Math.abs(towardPointX-arrow_x)/10; //int y_speed = (int) sqrt(pow((towardPointY-arrow_y),2)+ pow((towardPointX-arrow_x),2))/10;
+                    //int y_speed = Math.abs(towardPointY-arrow_y)/10;
 
                     //Поворачиваем холст
-                    canvas.rotate(-(rotate_bow_angle-45), rotate_bow_x_center, rotate_bow_y_center);
+                    //canvas.rotate(-(rotate_bow_angle-45), rotate_bow_x_center, rotate_bow_y_center);
                     //Рисуем стрелу
-                    canvas.drawBitmap(arrow,arrow_x,arrow_y,paint);
+                    //canvas.drawBitmap(arrow,arrow_x,arrow_y,paint);
                     //Переворачиваем холст обратно, на прежний угол
-                    canvas.rotate(rotate_bow_angle-45, rotate_bow_x_center, rotate_bow_y_center);
+                    //canvas.rotate(rotate_bow_angle-45, rotate_bow_x_center, rotate_bow_y_center);
 
                     //Поворачиваем холст
                     //canvas.rotate(-(rotate_bow_angle-45), rotate_bow_x_center, rotate_bow_y_center);
@@ -126,12 +127,12 @@ public class DrawBattlefield extends Thread {
 //                    if (arrow_y <= towardPointY) arrow_y +=y_speed;
 
                     //Проверка на уничтожение
-                    try {
-                        if ((arrow_x == enemy.enemyXCoordinate) || (arrow_x < 0) || (arrow_x > canvas.getWidth())){
-                            arrow_x = 1800;
-                            arrow_y = 540;
-                        }
-                    } catch (Exception e) {}
+//                    try {
+//                        if ((arrow_x == enemy.enemyXCoordinate) || (arrow_x < 0) || (arrow_x > canvas.getWidth())){
+//                            arrow_x = 1800;
+//                            arrow_y = 540;
+//                        }
+//                    } catch (Exception e) {}
 
                     //***********************************************************************************************//
 
