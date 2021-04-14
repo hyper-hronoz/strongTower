@@ -32,4 +32,5 @@ public class Arrow {
         arrow = BitmapFactory.decodeResource(context.getResources(), R.drawable.m_arrow);
         canvas.drawBitmap(arrow, arrowXCoordinate, arrowYCoordinate, paint);
     }
+
 }

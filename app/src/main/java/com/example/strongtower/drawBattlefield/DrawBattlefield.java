@@ -28,9 +28,8 @@ public class DrawBattlefield extends Thread {
 
     //public int arrow_x = 1800;
     //public int arrow_y = 540;
-    //private int arrow_speed = 36;
-    public int towardPointX;
-    public int towardPointY;
+    public static int towardPointX;
+    public static int towardPointY;
 
     public void setTowardPoint(int x, int y) {
         towardPointX = x;

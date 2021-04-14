@@ -44,16 +44,13 @@ public class GameCore {
         for (Arrow arrow : arrows) {
             arrow.arrowXCoordinate += arrow.arrowXSpeed;
             arrow.arrowYCoordinate += arrow.arrowYSpeed;
-
-            int towardPointX = (int) event.getX();
-            int towardPointY = (int) event.getY()
             // Движение стрелы
-            if (arrowXCoordinate >= towardPointX) arrowXCoordinate -=arrowXSpeed;
-            if (arrowXCoordinate <= towardPointX) arrowXCoordinate += arrowXSpeed;
-            if (arrowYCoordinate >= towardPointY) arrowYCoordinate -=arrowYSpeed;
-            if (arrowYCoordinate <= towardPointY) arrowYCoordinate +=arrowYSpeed;
+            if (arrow.arrowXCoordinate >= DrawBattlefield.towardPointX) arrow.arrowXCoordinate -=arrow.arrowXSpeed;
+            if (arrow.arrowXCoordinate <= DrawBattlefield.towardPointX) arrow.arrowXCoordinate += arrow.arrowXSpeed;
+            if (arrow.arrowYCoordinate >= DrawBattlefield.towardPointY) arrow.arrowYCoordinate -=arrow.arrowYSpeed;
+            if (arrow.arrowYCoordinate <= DrawBattlefield.towardPointY) arrow.arrowYCoordinate +=arrow.arrowYSpeed;
 
-            arrow.draw();
+            arrow.draw(context);
         }
     }
 }
