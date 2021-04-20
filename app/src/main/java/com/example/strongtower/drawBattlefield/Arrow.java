@@ -12,23 +12,42 @@ import com.example.strongtower.R;
 public class Arrow {
     public int arrowXCoordinate = 1800;
     public int arrowYCoordinate = 540;
-    public int arrowXSpeed = 0;
-    public int arrowYSpeed = 0;
+    public int towardX;
+    public int towardY;
     public int enemyWidth = 30;
     private Bitmap arrow;
-    private Canvas canvas;
     private Paint paint;
+    private int canvasWidth;
 
-
-    public Arrow(int arrowXSpeed, int arrowYSpeed,  Canvas canvas) {
+    public Arrow(int towardX, int towardY,int width) {
         this.paint = new Paint();
-        this.arrowYSpeed = arrowYSpeed;
-        this.arrowXSpeed = arrowXSpeed;
-        this.canvas = canvas;
+        this.towardX = towardX;
+        this.towardY = towardY;
         this.paint = paint;
+        this.canvasWidth = width;
     }
 
-    public void draw(Context context) {
+    public boolean isOut(){
+        return (arrowXCoordinate > canvasWidth) || (arrowYCoordinate < 0);
+    }
+
+    public void changeCoordinate(){
+      //Вертикальная и горизонтальная скорость стрелы
+        int arrowXSpeed = Math.abs(towardX-arrowXCoordinate)/10;
+        int arrowYSpeed = Math.abs(towardY-arrowYCoordinate)/10;
+
+        arrowXCoordinate += arrowXSpeed;
+        arrowYCoordinate += arrowYSpeed;
+
+       //Движение стрелы
+        if (arrowXCoordinate >= towardX) arrowXCoordinate -=arrowXSpeed;
+        if (arrowXCoordinate <= towardX) arrowXCoordinate += arrowXSpeed;
+        if (arrowYCoordinate >= towardY) arrowYCoordinate -=arrowYSpeed;
+        if (arrowYCoordinate <= towardY) arrowYCoordinate +=arrowYSpeed;
+
+    }
+
+    public void draw(Context context,Canvas canvas) {
         arrow = BitmapFactory.decodeResource(context.getResources(), R.drawable.m_arrow);
         canvas.drawBitmap(arrow, arrowXCoordinate, arrowYCoordinate, paint);
     }

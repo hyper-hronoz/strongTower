@@ -21,19 +21,23 @@ public class DrawBattlefield extends Thread {
 
     private volatile boolean running = true; //флаг для остановки потока
     private Bitmap bow;
-    //private Bitmap arrow;
-
+    private Context context;
     private Enemy enemy;
-    //private Arrow arrow1;
+    private GameCore gamecore;
 
-    //public int arrow_x = 1800;
-    //public int arrow_y = 540;
-    public static int towardPointX;
-    public static int towardPointY;
+    public int towardPointX;
+    public int towardPointY;
 
     public void setTowardPoint(int x, int y) {
         towardPointX = x;
         towardPointY = y;
+    }
+    public int getTowardPointX(){
+        return towardPointX;
+    }
+
+    public int getTowardPointY(){
+        return towardPointY;
     }
 
     // Функция для подсчета угла между точками
@@ -45,6 +49,8 @@ public class DrawBattlefield extends Thread {
 
     public DrawBattlefield(Context context, SurfaceHolder surfaceHolder) {
         this.surfaceHolder = surfaceHolder;
+        this.context = context;
+        new GameCore(, this.context);
         /* Добавляем картинку лука */
         bow = BitmapFactory.decodeResource(context.getResources(), R.drawable.bow);
         /* Добавляем картинку стрелы*/
@@ -76,15 +82,6 @@ public class DrawBattlefield extends Thread {
                     new Ground(canvas, paint);
 
 
-
-                    // Логига игры
-                    new GameCore(canvas);
-
-
-                    //***********************************************************************************************//
-                    /* Уголок кода Глеба, сюда не лезть*/
-
-                    //***********************************************************************************************//
                     /* Рисуем лук */
                     int bow_x = canvas.getWidth()/2 + 675 + 15;
                     int bow_y = canvas.getHeight()/2 - 275 + 75;
@@ -101,61 +98,6 @@ public class DrawBattlefield extends Thread {
                     canvas.drawBitmap(bow, bow_x, bow_y, paint);
                     //Переворачиваем холст обратно, на прежний угол
                     canvas.rotate(rotate_bow_angle-90, rotate_bow_x_center, rotate_bow_y_center);
-
-                    //***********************************************************************************************//
-                    /* Рисуем стрелу */
-
-<<<<<<< HEAD
-                    //Вертикальная и горизонтальная скорость стрелы
-                    //int x_speed = Math.abs(towardPointX-arrow_x)/10; //int y_speed = (int) sqrt(pow((towardPointY-arrow_y),2)+ pow((towardPointX-arrow_x),2))/10;
-                    //int y_speed = Math.abs(towardPointY-arrow_y)/10;
-
-                    //Поворачиваем холст
-                    //canvas.rotate(-(rotate_bow_angle-45), rotate_bow_x_center, rotate_bow_y_center);
-                    //Рисуем стрелу
-                    //canvas.drawBitmap(arrow,arrow_x,arrow_y,paint);
-                    //Переворачиваем холст обратно, на прежний угол
-                    //canvas.rotate(rotate_bow_angle-45, rotate_bow_x_center, rotate_bow_y_center);
-
-=======
-                    /*
-                    if (arrow_x == 1800) {
-                        //Поворачиваем холст
-                        canvas.rotate(-(rotate_bow_angle-45), rotate_bow_x_center, rotate_bow_y_center);
-                        //Рисуем стрелу
-                        canvas.drawBitmap(arrow,arrow_x,arrow_y,paint);
-                        //Переворачиваем холст обратно, на прежний угол
-                        canvas.rotate(rotate_bow_angle-45, rotate_bow_x_center, rotate_bow_y_center);
-                    }
-                    */
->>>>>>> parent of e94598c (Ещё не до конца доделано движение стрелы)
-                    //Поворачиваем холст
-                    //canvas.rotate(-(rotate_bow_angle-45), rotate_bow_x_center, rotate_bow_y_center);
-
-                    // Движение стрелы
-                    if (arrow_x >= towardPointX) arrow_x -=arrow_speed;
-                    if (arrow_x <= towardPointX) arrow_x += arrow_speed;
-                    if (arrow_y >= towardPointY) arrow_y -=arrow_speed;
-                    if (arrow_y <= towardPointY) arrow_y +=arrow_speed;
-
-                    //Рисуем стрелу
-                    canvas.drawBitmap(arrow,arrow_x,arrow_y,paint);
-
-                    //Проверка на уничтожение
-//                    try {
-//                        if ((arrow_x == enemy.enemyXCoordinate) || (arrow_x < 0) || (arrow_x > canvas.getWidth())){
-//                            arrow_x = 1800;
-//                            arrow_y = 540;
-//                        }
-//                    } catch (Exception e) {}
-
-                    //Переворачиваем холст обратно, на прежний угол
-                    //canvas.rotate(rotate_bow_angle-45, rotate_bow_x_center, rotate_bow_y_center);
-
-
-                    //***********************************************************************************************//
-
-
 
                 } finally {
                     surfaceHolder.unlockCanvasAndPost(canvas);

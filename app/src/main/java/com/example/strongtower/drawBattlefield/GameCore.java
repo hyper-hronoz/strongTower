@@ -1,5 +1,6 @@
 package com.example.strongtower.drawBattlefield;
 
+import android.content.Context;
 import android.graphics.Canvas;
 
 import java.util.ArrayList;
@@ -9,9 +10,14 @@ public class GameCore {
     // массив со стрелами
     public static ArrayList<Arrow> arrows = new ArrayList<Arrow>();
     private Canvas canvas;
+    private Context context;
 
-    public GameCore(Canvas canvas) {
+
+
+
+    public GameCore(Canvas canvas,Context context) {
         this.canvas = canvas;
+        this.context = context;
 
         // ставим ограничение на создание новых врагов
         if (enemies.size() < 4) {
@@ -25,7 +31,6 @@ public class GameCore {
 
         // отрисовывыем врагов
         drawEnemies();
-        drawArrows();
     }
 
     // рисовка всех врагов
@@ -40,17 +45,17 @@ public class GameCore {
             enemy.draw();
         }
     }
-    public void drawArrows() {
-        for (Arrow arrow : arrows) {
-            arrow.arrowXCoordinate += arrow.arrowXSpeed;
-            arrow.arrowYCoordinate += arrow.arrowYSpeed;
-            // Движение стрелы
-            if (arrow.arrowXCoordinate >= DrawBattlefield.towardPointX) arrow.arrowXCoordinate -=arrow.arrowXSpeed;
-            if (arrow.arrowXCoordinate <= DrawBattlefield.towardPointX) arrow.arrowXCoordinate += arrow.arrowXSpeed;
-            if (arrow.arrowYCoordinate >= DrawBattlefield.towardPointY) arrow.arrowYCoordinate -=arrow.arrowYSpeed;
-            if (arrow.arrowYCoordinate <= DrawBattlefield.towardPointY) arrow.arrowYCoordinate +=arrow.arrowYSpeed;
 
-            arrow.draw(context);
+    public void CreateArrow(int x, int y){
+        arrows.add(new Arrow(x,y,canvas.getWidth()));
+    }
+
+    public void coordinate_delete_arrow() {
+        for (int i = 0; i < arrows.size(); i ++){
+            if (arrows.get(i).isOut()){
+                arrows.remove(i);
+            }
+            arrows.get(i).changeCoordinate();
         }
     }
 }
